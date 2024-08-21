@@ -4,12 +4,12 @@ import { Post } from './pages/post'
 import { DefaultLayout } from './layouts/defaultLayout'
 
 export function Router() {
-  return(
+  return (
     <Routes>
-      <Route path='/' element={<DefaultLayout />}>
+      <Route path="/" element={<DefaultLayout />}>
         <Route path="/" element={<Home />} />
         <Route path="/post" element={<Post />} />
-      </Route>      
+      </Route>
     </Routes>
   )
 }

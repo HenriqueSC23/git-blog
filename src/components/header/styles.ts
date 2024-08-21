@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import headerCover from "../../assets/cover.png"
+import styled from 'styled-components'
+import headerCover from '../../assets/cover.png'
 
 export const HeaderContainer = styled.header`
   display: flex;
@@ -12,4 +12,4 @@ export const HeaderContainer = styled.header`
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-`;
+`
