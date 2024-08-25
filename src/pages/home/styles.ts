@@ -8,3 +8,10 @@ export const HomeContainer = styled.main`
   margin: auto;
   padding: 0 2rem;
 `
+export const GridPosts = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  margin: 3rem 0 3rem;
+  column-gap: 2rem;
+  row-gap: 2rem;
+`
