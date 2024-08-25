@@ -5,28 +5,47 @@ import {
   InfoProfile,
   ProfileContainer,
 } from './styles'
+import { useEffect, useState } from 'react'
+
+interface Transaction {
+  html_url: string
+  avatar_url: string
+  name: string
+  bio: string
+  login: string
+  followers: number
+}
 
 export function Profile() {
+  const [issues, setIssues] = useState<Transaction | null>(null)
+
+  async function loadIssues() {
+    const response = await fetch('https://api.github.com/users/HenriqueSC23')
+    const data = await response.json()
+
+    setIssues(data)
+  }
+
+  useEffect(() => {
+    loadIssues()
+  }, [])
+
   return (
     <ProfileContainer>
-      <img src="https://github.com/HenriqueSC23.png" alt="" />
-      <InfoProfile>
+      <img src={issues?.avatar_url} alt="" />
+
+      <InfoProfile key={1}>
         <HeaderProfile>
-          <h1>Henrique</h1>
-          <a href="#">
+          <h1>{issues?.name}</h1>
+          <a href={issues?.html_url}>
             GITHUB <ArrowSquareOut size={12} weight="bold" />
           </a>
         </HeaderProfile>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis,
-          voluptates nemo. Beatae quam odit aliquam accusamus minima asperiores
-          facere, quidem libero veniam molestiae ad quae, dignissimos in labore
-          architecto officiis?
-        </p>
+        <p>{issues?.bio}</p>
         <FooterProfile>
           <div>
             <GithubLogo weight="fill" size={18} />
-            HenriqueSC23{' '}
+            {issues?.login}
           </div>
           <div>
             <Buildings weight="fill" size={18} />
@@ -34,7 +53,7 @@ export function Profile() {
           </div>
           <div>
             <Users weight="fill" size={18} />
-            10 seguidores
+            {issues?.followers} <p>seguidores</p>
           </div>
         </FooterProfile>
       </InfoProfile>
